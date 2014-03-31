@@ -1,0 +1,20 @@
+# Makefile for queue_stats
+
+
+CFLAGS= -std=c99 
+LDLIBS= -lm
+SRC=queue-main.c entry.c 
+OBJ=queue-main.o entry.o
+queue_stats: ${OBJ} 
+
+depend: makedepend -Y ${SRC} &> /dev/null 
+
+clean: rm -f ${OBJ} queue_stats Makefile.bak 
+
+install: queue_stats
+	cp queue_stats ~/bin
+
+# DO NOT DELETE 
+
+entry.o: entry.h
+queue-main.o: entry.h
